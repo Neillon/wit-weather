@@ -1,0 +1,4 @@
+<resources>
+    <string name="location_permission_title">We need you to give the permission to use your actual location from your device for a better experience</string>
+    <string name="give_permission">Give Permission</string>
+</resources>

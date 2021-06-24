@@ -10,3 +10,5 @@ rootProject.name = "Wit Weather"
 include ':app'
 include ':features:location'
 include ':features:home'
+include ':core'
+include ':navigator'
