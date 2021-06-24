@@ -4,7 +4,7 @@ import android.content.Context
 import br.com.neillon.core.navigation.Features
 import br.com.neillon.core.navigation.Navigator
 import br.com.neillon.home.HomeActivity
-import br.com.neillon.location.StartActivity
+import br.com.neillon.location.ui.LocationActivity
 import br.com.neillon.navigator.exception.FeatureNotFoundException
 
 class NavigatorImpl : Navigator {
@@ -22,7 +22,7 @@ class NavigatorImpl : Navigator {
                     }
                 }
                 Features.Location -> {
-                    StartActivity.newInstance(this).also { intent ->
+                    LocationActivity.newInstance(this).also { intent ->
                         startActivity(intent)
                     }
                 }

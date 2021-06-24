@@ -8,10 +8,7 @@
 
     <application>
         <activity
-            android:name=".StartActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".LocationActivity"
+            android:name=".ui.LocationActivity"
             android:exported="true" />
     </application>
 

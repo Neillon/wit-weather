@@ -1,50 +1,50 @@
-package br.com.neillon.location
+package br.com.neillon.location.ui.location
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import br.com.neillon.core.entities.GeoLocation
 import br.com.neillon.core.navigation.Features
 import br.com.neillon.core.navigation.Navigator
-import br.com.neillon.location.databinding.ActivityLocationBinding
-import br.com.neillon.location.viewstate.LocationViewEffect
-import br.com.neillon.location.viewstate.LocationViewEvent
+import br.com.neillon.location.databinding.FragmentLocationPermissionBinding
+import br.com.neillon.location.ui.location.viewstate.LocationViewEffect
+import br.com.neillon.location.ui.location.viewstate.LocationViewEvent
 import com.google.android.gms.location.LocationServices
 import org.koin.android.ext.android.inject
 
-class LocationActivity : AppCompatActivity() {
+class LocationPermissionFragment : Fragment() {
 
     companion object {
-        private const val TAG = "LocationActivity"
-
-        fun newInstance(context: Context) = Intent(context, LocationActivity::class.java)
+        private const val TAG = "LocationPermission"
     }
 
-    private var _binding: ActivityLocationBinding? = null
+    private var _binding: FragmentLocationPermissionBinding? = null
     private val binding by lazy { _binding!! }
 
     private val navigator: Navigator by inject()
-    private val viewModel by viewModels<LocationViewModel>()
+    private val viewModel by viewModels<LocationPermissionViewModel>()
 
     private val hasLocationPermission by lazy {
-        ActivityCompat.checkSelfPermission(
-            this, ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(
-                    this, ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
+        val hasFineLocationPermission = ActivityCompat.checkSelfPermission(
+            requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val hasCoarseLocationPermission = ActivityCompat.checkSelfPermission(
+            requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        hasFineLocationPermission && hasCoarseLocationPermission
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -54,16 +54,23 @@ class LocationActivity : AppCompatActivity() {
             listenLocationUpdates()
             viewModel.processEvent(LocationViewEvent.LoadCurrentLocation)
         } else {
-            finish()
+            requireActivity().finish()
         }
     }
-    private val fusedLocationClient by lazy { LocationServices.getFusedLocationProviderClient(this) }
+    private val fusedLocationClient by lazy {
+        LocationServices.getFusedLocationProviderClient(requireActivity())
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentLocationPermissionBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        _binding = ActivityLocationBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         verifyIfUserHasPermission()
 
@@ -81,7 +88,7 @@ class LocationActivity : AppCompatActivity() {
     }
 
     private fun observeViewEffect() {
-        viewModel.viewEffect.observe(this, Observer {
+        viewModel.viewEffect.observe(viewLifecycleOwner, {
             when (it) {
                 is LocationViewEffect.GoToHome -> navigateToHomeWithLocation(it.currentLocation)
             }
@@ -89,7 +96,7 @@ class LocationActivity : AppCompatActivity() {
     }
 
     private fun observeViewState() {
-        viewModel.viewState.observe(this, Observer {
+        viewModel.viewState.observe(viewLifecycleOwner, {
             binding.progressBar.isVisible = it.isLoading
             binding.buttonGivePermission.isVisible = !it.isLoading
         })
@@ -110,13 +117,13 @@ class LocationActivity : AppCompatActivity() {
             listenLocationUpdates()
             viewModel.processEvent(LocationViewEvent.LoadCurrentLocation)
         } else {
-            requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
     }
 
     private fun navigateToHomeWithLocation(currentLocation: GeoLocation) {
-        navigator.navigateToFeature(this@LocationActivity, Features.Home(currentLocation))
-        finish()
+        navigator.navigateToFeature(requireContext(), Features.Home(currentLocation))
+        requireActivity().finish()
     }
 
     // Added the SupressLint because it is called inside another function
@@ -133,8 +140,11 @@ class LocationActivity : AppCompatActivity() {
 
                 Log.i(
                     TAG,
-                    "listenLocationUpdates: Current Location [${location.latitude} ${location.longitude}] "
+                    "listenLocationUpdates: Current Location [${location.latitude}, ${location.longitude}]"
                 )
+            }
+            .addOnFailureListener {
+                Log.i(TAG, "listenLocationUpdates: Error trying to get the current location")
             }
     }
 }

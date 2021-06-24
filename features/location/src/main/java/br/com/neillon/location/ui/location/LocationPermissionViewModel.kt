@@ -1,12 +1,12 @@
-package br.com.neillon.location
+package br.com.neillon.location.ui.location
 
 import br.com.neillon.core.common.StateViewModel
 import br.com.neillon.core.entities.GeoLocation
-import br.com.neillon.location.viewstate.LocationViewEffect
-import br.com.neillon.location.viewstate.LocationViewEvent
-import br.com.neillon.location.viewstate.LocationViewState
+import br.com.neillon.location.ui.location.viewstate.LocationViewEffect
+import br.com.neillon.location.ui.location.viewstate.LocationViewEvent
+import br.com.neillon.location.ui.location.viewstate.LocationViewState
 
-class LocationViewModel :
+class LocationPermissionViewModel :
     StateViewModel<LocationViewState, LocationViewEvent, LocationViewEffect>() {
 
     init {

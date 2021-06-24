@@ -1,4 +1,4 @@
-package br.com.neillon.location.viewstate
+package br.com.neillon.location.ui.location.viewstate
 
 sealed class LocationViewEvent {
     object LoadCurrentLocation : LocationViewEvent()

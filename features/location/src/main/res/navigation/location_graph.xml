@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/location_graph"
+    app:startDestination="@id/locationStartFragment">
+
+    <fragment
+        android:id="@+id/locationStartFragment"
+        android:name="br.com.neillon.location.ui.start.LocationStartFragment"
+        android:label="fragment_location_start"
+        tools:layout="@layout/fragment_location_start" >
+        <action
+            android:id="@+id/action_locationStartFragment_to_locationPermissionFragment"
+            app:destination="@id/locationPermissionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationPermissionFragment"
+        android:name="br.com.neillon.location.ui.location.LocationPermissionFragment"
+        android:label="fragment_location_permission"
+        tools:layout="@layout/fragment_location_permission" />
+</navigation>

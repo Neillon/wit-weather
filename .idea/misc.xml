@@ -25,6 +25,8 @@
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/drawable/rs.xml" value="0.4" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/layout/activity_location.xml" value="0.25" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/layout/activity_start.xml" value="0.38385416666666666" />
+        <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/layout/fragment_location_permission.xml" value="0.384375" />
+        <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/layout/fragment_location_start.xml" value="0.384375" />
       </map>
     </option>
   </component>

@@ -1,44 +1,45 @@
-package br.com.neillon.location
+package br.com.neillon.location.ui.start
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import br.com.neillon.location.databinding.ActivityStartBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import br.com.neillon.location.databinding.FragmentLocationStartBinding
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
-import kotlinx.coroutines.*
 
-class StartActivity : AppCompatActivity() {
+class LocationStartFragment : Fragment() {
 
     companion object {
-        private const val TAG = "StartActivity"
+        private const val TAG = "LocationStartFragment"
         private const val REQUEST_CHECK_SETTINGS: Int = 1
-
-        fun newInstance(context: Context) = Intent(context, StartActivity::class.java)
     }
 
-    private var _binding: ActivityStartBinding? = null
+    private var _binding: FragmentLocationStartBinding? = null
     private val binding by lazy { _binding!! }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        _binding = ActivityStartBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private val navController by lazy { findNavController() }
 
-        createLocationRequest()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentLocationStartBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CHECK_SETTINGS) {
-            navigateToLocation()
-        }
+        createLocationRequest()
     }
 
     private fun createLocationRequest() {
@@ -51,7 +52,7 @@ class StartActivity : AppCompatActivity() {
         val builder = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
 
-        val client: SettingsClient = LocationServices.getSettingsClient(this)
+        val client: SettingsClient = LocationServices.getSettingsClient(requireContext())
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
 
         task
@@ -60,8 +61,7 @@ class StartActivity : AppCompatActivity() {
                 if (exception is ResolvableApiException) {
                     try {
                         exception.startResolutionForResult(
-                            this@StartActivity,
-                            REQUEST_CHECK_SETTINGS
+                            requireActivity(), REQUEST_CHECK_SETTINGS
                         )
                     } catch (sendEx: IntentSender.SendIntentException) {
                         Log.e(TAG, "createLocationRequest: Error sending intent")
@@ -71,9 +71,8 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun navigateToLocation() {
-        LocationActivity.newInstance(this).apply {
-            startActivity(this)
-        }
-        finish()
+        val action =
+            LocationStartFragmentDirections.actionLocationStartFragmentToLocationPermissionFragment()
+        navController.navigate(action)
     }
 }

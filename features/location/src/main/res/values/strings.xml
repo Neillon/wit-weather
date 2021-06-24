@@ -1,4 +1,6 @@
 <resources>
     <string name="location_permission_title">We need you to give the permission to use your actual location from your device for a better experience</string>
     <string name="give_permission">Give Permission</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
