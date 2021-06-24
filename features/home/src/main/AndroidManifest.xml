@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name="br.com.neillon.home.HomeActivity"
+            android:name="br.com.neillon.home.presentation.ui.HomeActivity"
             android:exported="true" />
     </application>
 

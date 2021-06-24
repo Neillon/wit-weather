@@ -1,6 +1,7 @@
 package br.com.neillon.witweather
 
 import android.app.Application
+import br.com.neillon.home.di.HomeModule
 import br.com.neillon.navigator.di.NavigatorModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -12,7 +13,10 @@ class WitWeatherApplication : Application() {
 
         startKoin {
             androidContext(this@WitWeatherApplication)
-            modules(NavigatorModule.dependencies)
+            modules(
+                NavigatorModule.dependencies,
+                HomeModule.dependencies
+            )
         }
     }
 }

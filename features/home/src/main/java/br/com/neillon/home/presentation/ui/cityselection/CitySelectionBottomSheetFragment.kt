@@ -1,4 +1,4 @@
-package br.com.neillon.home.cityselection
+package br.com.neillon.home.presentation.ui.cityselection
 
 import android.content.DialogInterface
 import android.os.Bundle

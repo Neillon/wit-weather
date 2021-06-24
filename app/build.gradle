@@ -18,21 +18,13 @@ android {
     }
 
     buildTypes {
-
         debug {
             debuggable true
             minifyEnabled false
-
-            buildConfigField 'String', "WEATHER_API_URL", "\"api.openweathermap.org/data/2.5/\""
-            buildConfigField 'String', "WEATHER_API_KEY", "\"59cf36fde5cdd1d6d77d4096dbaed16a\""
         }
 
         release {
             minifyEnabled true
-
-            buildConfigField 'String', "WEATHER_API_URL", "\"api.openweathermap.org/data/2.5/\""
-            buildConfigField 'String', "WEATHER_API_KEY", "\"59cf36fde5cdd1d6d77d4096dbaed16a\""
-
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
@@ -55,7 +47,10 @@ android {
 dependencies {
 
     implementation project(':core')
-    implementation project(path: ':navigator')
+    implementation project(':navigator')
+    implementation project(':features:home')
+    implementation project(':features:location')
+
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
     // Koin

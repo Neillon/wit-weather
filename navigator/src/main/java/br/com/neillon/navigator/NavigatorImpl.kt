@@ -3,7 +3,7 @@ package br.com.neillon.navigator
 import android.content.Context
 import br.com.neillon.core.navigation.Features
 import br.com.neillon.core.navigation.Navigator
-import br.com.neillon.home.HomeActivity
+import br.com.neillon.home.presentation.ui.HomeActivity
 import br.com.neillon.location.ui.LocationActivity
 import br.com.neillon.navigator.exception.FeatureNotFoundException
 

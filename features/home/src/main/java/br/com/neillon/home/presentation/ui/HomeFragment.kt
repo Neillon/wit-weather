@@ -1,4 +1,4 @@
-package br.com.neillon.home
+package br.com.neillon.home.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.com.neillon.home.cityselection.CitySelectionBottomSheetFragment
+import br.com.neillon.home.presentation.ui.cityselection.CitySelectionBottomSheetFragment
 import br.com.neillon.home.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

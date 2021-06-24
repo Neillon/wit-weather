@@ -1,4 +1,4 @@
-package br.com.neillon.home
+package br.com.neillon.home.presentation.ui
 
 import android.content.Context
 import android.content.Intent
