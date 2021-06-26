@@ -5,7 +5,10 @@ import com.google.gson.GsonBuilder
 
 object Constants {
     object Network {
+        const val AUTH_QUERY_KEY = "appid"
+
         object Exceptions {
+
             const val INVALID_API_KEY_STATUS_CODE = 401
 
             const val NOT_SPECIFIED_ERROR_MESSAGE = "Not specified error"

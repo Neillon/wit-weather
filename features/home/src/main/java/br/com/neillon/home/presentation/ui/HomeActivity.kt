@@ -3,7 +3,6 @@ package br.com.neillon.home.presentation.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.neillon.core.extensions.ZERO
 import br.com.neillon.home.databinding.ActivityHomeBinding
+import br.com.neillon.home.presentation.ui.viewstate.HomeViewEvent
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -49,8 +49,9 @@ class HomeActivity : AppCompatActivity() {
         _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.i(TAG, "onCreate: Position: [$latitude : $longitude]")
         setupViews()
+
+        homeViewModel.processEvent(HomeViewEvent.GetWeatherByLatLong(latitude, longitude))
     }
 
     private fun setupViews() {

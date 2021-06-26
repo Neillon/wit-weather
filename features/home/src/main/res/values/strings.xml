@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="select_a_city">Selecione uma cidade</string>
+    <string name="unknow_error">Unknow error. Try again later</string>
+    <string name="loading_data">Loading data...</string>
+    <string name="city">City</string>
+    <string name="no_data_found">No data found</string>
+    <string name="retry">Retry</string>
 </resources>

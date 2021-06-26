@@ -2,8 +2,8 @@ package br.com.neillon.home.usecase
 
 import br.com.neillon.core.common.Either
 import br.com.neillon.home.domain.abstractions.WeatherRepository
-import br.com.neillon.home.domain.usecases.GetWeatherByCityName
-import br.com.neillon.home.domain.usecases.GetWeatherByCityNameImpl
+import br.com.neillon.home.domain.usecases.GetWeatherByCityNameUseCase
+import br.com.neillon.home.domain.usecases.GetWeatherByCityNameUseCaseImpl
 import br.com.neillon.home.mock.Mocks
 import br.com.neillon.home.rules.TestCoroutineRule
 import br.com.neillon.network.Constants
@@ -18,19 +18,19 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class GetWeatherByCityNameTest {
+class GetWeatherByCityNameUseCaseTest {
 
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
 
     @MockK
     private lateinit var repository: WeatherRepository
-    private lateinit var useCase: GetWeatherByCityName
+    private lateinit var useCase: GetWeatherByCityNameUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        useCase = GetWeatherByCityNameImpl(repository)
+        useCase = GetWeatherByCityNameUseCaseImpl(repository)
     }
 
     @Test
@@ -39,7 +39,7 @@ class GetWeatherByCityNameTest {
             val expected = Either.value(Mocks.Weather.WEATHER)
             coEvery { repository.getWeatherByCityName(any()) } returns expected
 
-            val params = GetWeatherByCityName.Params(cityName = "Lisbon")
+            val params = GetWeatherByCityNameUseCase.Params(cityName = "Lisbon")
             val result = useCase.execute(params)
 
             assertEquals(expected, result)
@@ -52,7 +52,7 @@ class GetWeatherByCityNameTest {
             val expected = Either.error(exception)
             coEvery { repository.getWeatherByCityName(any()) } returns expected
 
-            val params = GetWeatherByCityName.Params(cityName = "Lisbon")
+            val params = GetWeatherByCityNameUseCase.Params(cityName = "Lisbon")
             val result = useCase.execute(params)
 
             assertEquals(expected, result)

@@ -22,14 +22,14 @@ android {
             debuggable true
             minifyEnabled false
 
-            buildConfigField 'String', "WEATHER_API_URL", "\"api.openweathermap.org/data/2.5/\""
+            buildConfigField 'String', "WEATHER_API_URL", "\"https://api.openweathermap.org/\""
             buildConfigField 'String', "WEATHER_API_KEY", "\"59cf36fde5cdd1d6d77d4096dbaed16a\""
         }
 
         release {
             minifyEnabled true
 
-            buildConfigField 'String', "WEATHER_API_URL", "\"api.openweathermap.org/data/2.5/\""
+            buildConfigField 'String', "WEATHER_API_URL", "\"htts://api.openweathermap.org/\""
             buildConfigField 'String', "WEATHER_API_KEY", "\"59cf36fde5cdd1d6d77d4096dbaed16a\""
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

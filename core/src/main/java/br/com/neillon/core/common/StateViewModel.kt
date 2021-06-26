@@ -4,15 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-abstract class StateViewModel<T, S, U>: ViewModel() {
+abstract class StateViewModel<T, S, U> : ViewModel() {
 
     protected val _viewState = MutableLiveData<T>()
-    val viewState: LiveData<T>
-        get() = _viewState
+    val viewState: LiveData<T> = _viewState
 
     protected val _viewEffect = MutableLiveData<U>()
-    val viewEffect: LiveData<U>
-        get() = _viewEffect
+    val viewEffect: LiveData<U> = _viewEffect
 
     abstract fun processEvent(event: S)
 }

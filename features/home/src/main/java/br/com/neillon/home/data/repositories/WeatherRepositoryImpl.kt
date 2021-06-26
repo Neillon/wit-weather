@@ -6,6 +6,8 @@ import br.com.neillon.home.data.mapper.WeatherResponseMapper
 import br.com.neillon.home.domain.abstractions.WeatherRepository
 import br.com.neillon.home.domain.entities.CityWeather
 import br.com.neillon.network.manager.NetworkManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class WeatherRepositoryImpl(
     private val api: OpenWeatherApi,
@@ -13,7 +15,7 @@ class WeatherRepositoryImpl(
 ) : WeatherRepository {
     override suspend fun getWeatherByCityName(
         cityName: String
-    ): Either<CityWeather?, Exception> =
+    ): Either<CityWeather?, Exception> = withContext(Dispatchers.IO) {
         try {
             val result = NetworkManager.doAsyncRequest {
                 api.getWeatherFromCity(cityName)
@@ -23,11 +25,12 @@ class WeatherRepositoryImpl(
         } catch (e: Exception) {
             Either.error(e)
         }
+    }
 
     override suspend fun getWeatherByLatLong(
         latitude: Double,
         longitude: Double
-    ): Either<CityWeather?, Exception> =
+    ): Either<CityWeather?, Exception> = withContext(Dispatchers.IO) {
         try {
             val result = NetworkManager.doAsyncRequest {
                 api.getWeatherFromLatLong(latitude, longitude)
@@ -37,5 +40,6 @@ class WeatherRepositoryImpl(
         } catch (e: Exception) {
             Either.error(e)
         }
+    }
 
 }

@@ -5,10 +5,12 @@ import br.com.neillon.home.data.mapper.WeatherResponseMapper
 import br.com.neillon.home.data.mapper.WeatherResponseMapperImpl
 import br.com.neillon.home.data.repositories.WeatherRepositoryImpl
 import br.com.neillon.home.domain.abstractions.WeatherRepository
-import br.com.neillon.home.domain.usecases.GetWeatherByCityName
-import br.com.neillon.home.domain.usecases.GetWeatherByCityNameImpl
-import br.com.neillon.home.domain.usecases.GetWeatherByLatLong
-import br.com.neillon.home.domain.usecases.GetWeatherByLatLongImpl
+import br.com.neillon.home.domain.usecases.GetWeatherByCityNameUseCase
+import br.com.neillon.home.domain.usecases.GetWeatherByCityNameUseCaseImpl
+import br.com.neillon.home.domain.usecases.GetWeatherByLatLongUseCase
+import br.com.neillon.home.domain.usecases.GetWeatherByLatLongUseCaseImpl
+import br.com.neillon.home.presentation.mapper.CityWeatherUiMapper
+import br.com.neillon.home.presentation.mapper.CityWeatherUiMapperImpl
 import br.com.neillon.home.presentation.ui.HomeViewModel
 import br.com.neillon.network.RetrofitFactory
 import org.koin.android.viewmodel.dsl.viewModel
@@ -24,13 +26,14 @@ object HomeModule {
         factory { WeatherRepositoryImpl(get(), get()) } bind WeatherRepository::class
 
         // UseCase
-        factory { GetWeatherByCityNameImpl(get()) } bind GetWeatherByCityName::class
-        factory { GetWeatherByLatLongImpl(get()) } bind GetWeatherByLatLong::class
+        factory { GetWeatherByCityNameUseCaseImpl(get()) } bind GetWeatherByCityNameUseCase::class
+        factory { GetWeatherByLatLongUseCaseImpl(get()) } bind GetWeatherByLatLongUseCase::class
 
         // Mappers
         factory { WeatherResponseMapperImpl() } bind WeatherResponseMapper::class
+        factory { CityWeatherUiMapperImpl() } bind CityWeatherUiMapper::class
 
         // ViewModels
-        viewModel { HomeViewModel(get()) }
+        viewModel { HomeViewModel(get(), get(), get()) }
     }
 }

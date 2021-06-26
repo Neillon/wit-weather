@@ -7,15 +7,19 @@ import retrofit2.http.Query
 
 interface OpenWeatherApi {
 
-    @GET("/weather")
+    companion object {
+        const val BASE_URL = "/data/2.5"
+    }
+
+    @GET("$BASE_URL/weather")
     suspend fun getWeatherFromCity(
-        @Query("q") query: String,
+        @Query("q") query: String
     ): Response<CityWeatherResponse>
 
-    @GET("/weather")
+    @GET("$BASE_URL/weather")
     suspend fun getWeatherFromLatLong(
         @Query("lat") latitude: Double,
-        @Query("lon") longitude: Double,
+        @Query("lon") longitude: Double
     ): Response<CityWeatherResponse>
 
 }

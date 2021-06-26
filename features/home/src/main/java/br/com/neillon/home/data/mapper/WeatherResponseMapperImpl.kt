@@ -14,10 +14,10 @@ class WeatherResponseMapperImpl : WeatherResponseMapper {
             latitude = item.coordinates.latitude,
             weather = Weather(
                 description = item.weather?.firstOrNull()?.description ?: String.EMPTY,
-                temperature = item.main.temp,
-                feelsLikeTemperature = item.main.feelsLike,
-                min = item.main.min,
-                max = item.main.max,
+                temperature = item.main.temp.toInt(),
+                feelsLikeTemperature = item.main.feelsLike.toInt(),
+                min = item.main.min.toInt(),
+                max = item.main.max.toInt(),
                 pressure = item.main.pressure,
                 humidity = item.main.humidity,
                 windSpeed = item.wind.speed

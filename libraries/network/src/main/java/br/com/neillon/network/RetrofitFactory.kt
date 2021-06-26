@@ -7,7 +7,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+
 object RetrofitFactory {
+
 
     inline fun <reified S> createService(): S {
         val client = OkHttpClient.Builder().run {
@@ -15,6 +17,7 @@ object RetrofitFactory {
             readTimeout(Constants.Network.Limits.READ, TimeUnit.SECONDS)
             writeTimeout(Constants.Network.Limits.WRITE, TimeUnit.SECONDS)
             addLogInterceptor()
+            // addAuthInterceptor(Constants.Network.AUTH_QUERY_KEY)
             build()
         }
 
