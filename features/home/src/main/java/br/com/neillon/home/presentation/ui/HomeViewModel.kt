@@ -63,7 +63,6 @@ class HomeViewModel(
                 latitude = latitude,
                 longitude = longitude
             )
-            delay(1000L)
             val result = getWeatherByLatLongUseCase.execute(params)
 
             withContext(Dispatchers.Main) {

@@ -4,19 +4,30 @@ import br.com.neillon.core.extensions.EMPTY
 import br.com.neillon.home.data.dto.*
 import br.com.neillon.home.domain.entities.CityWeather
 import br.com.neillon.home.domain.entities.Weather
+import br.com.neillon.home.presentation.dto.CityWeatherUi
 
 object Mocks {
     object Weather {
+        val WEATHER_UI = CityWeatherUi(
+            cityName = "Lisbon",
+            temperature = Int.MIN_VALUE,
+            description = "Clear",
+            max = Int.MAX_VALUE,
+            min = Int.MIN_VALUE,
+            windVelocity = Double.MAX_VALUE,
+            humidity = Int.MIN_VALUE,
+            pressure = Int.MAX_VALUE
+        )
         val WEATHER = CityWeather(
             name = "Lisbon",
             longitude = Double.MAX_VALUE,
             latitude = Double.MIN_VALUE,
             weather = Weather(
                 description = String.EMPTY,
-                temperature = Double.MIN_VALUE,
-                feelsLikeTemperature = Double.MAX_VALUE,
-                min = Double.MIN_VALUE,
-                max = Double.MAX_VALUE,
+                temperature = Int.MIN_VALUE,
+                feelsLikeTemperature = Int.MAX_VALUE,
+                min = Int.MIN_VALUE,
+                max = Int.MAX_VALUE,
                 pressure = Int.MIN_VALUE,
                 humidity = Int.MIN_VALUE,
                 windSpeed = Double.MAX_VALUE,
