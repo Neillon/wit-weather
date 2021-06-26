@@ -17,7 +17,11 @@ class NavigatorImpl : Navigator {
         context?.run {
             when (feature) {
                 is Features.Home -> {
-                    HomeActivity.newInstance(this).also { intent ->
+                    HomeActivity.newInstance(
+                        this,
+                        feature.currentLocation.latitude,
+                        feature.currentLocation.longitude
+                    ).also { intent ->
                         startActivity(intent)
                     }
                 }
