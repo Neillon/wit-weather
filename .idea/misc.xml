@@ -21,6 +21,9 @@
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/app/src/main/res/layout/fragment_city_selection.xml" value="0.384375" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/app/src/main/res/layout/fragment_home.xml" value="0.384375" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/app/src/main/res/layout/item_city.xml" value="0.384375" />
+        <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/home/src/main/res/drawable/round_bottom_sheet_background.xml" value="0.3943589743589744" />
+        <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/home/src/main/res/layout/fragment_city_selection.xml" value="0.4" />
+        <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/home/src/main/res/layout/item_city.xml" value="0.536" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/home/src/main/res/layout/teste.xml" value="0.384375" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/drawable/rs.xml" value="0.4" />
         <entry key="..\:/Users/neillon.cesar_guiabo/Documents/Projects/wit-weather/features/location/src/main/res/layout/activity_location.xml" value="0.25" />
@@ -36,5 +39,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.536" />
+      </ProjectState>
+    </option>
   </component>
 </project>

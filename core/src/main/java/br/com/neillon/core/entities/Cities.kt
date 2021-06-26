@@ -1,14 +1,14 @@
 package br.com.neillon.core.entities
 
-enum class Cities {
-    LISBON,
-    MADRID,
-    PARIS,
-    BERLIN,
-    COPENHAGEN,
-    ROME,
-    LONDON,
-    DUBLIN,
-    PRAGUE,
-    VIENNA
+enum class Cities(var cityName: String) {
+    LISBON("Lisbon"),
+    MADRID("Madrid"),
+    PARIS("Paris"),
+    BERLIN("Berlin"),
+    COPENHAGEN("Copenhagen"),
+    ROME("Rome"),
+    LONDON("London"),
+    DUBLIN("Dublin"),
+    PRAGUE("Prague"),
+    VIENNA("Viena");
 }

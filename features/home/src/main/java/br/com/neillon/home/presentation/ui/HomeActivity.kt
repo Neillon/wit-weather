@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.neillon.home.databinding.ActivityHomeBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 
@@ -23,6 +24,8 @@ class HomeActivity : AppCompatActivity() {
         supportFragmentManager.findFragmentById(binding.homeNavHostFragment.id) as NavHostFragment?
     }
     private lateinit var navController: NavController
+
+    private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

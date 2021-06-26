@@ -9,7 +9,9 @@ import br.com.neillon.home.domain.usecases.GetWeatherByCityName
 import br.com.neillon.home.domain.usecases.GetWeatherByCityNameImpl
 import br.com.neillon.home.domain.usecases.GetWeatherByLatLong
 import br.com.neillon.home.domain.usecases.GetWeatherByLatLongImpl
+import br.com.neillon.home.presentation.ui.HomeViewModel
 import br.com.neillon.network.RetrofitFactory
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -27,5 +29,8 @@ object HomeModule {
 
         // Mappers
         factory { WeatherResponseMapperImpl() } bind WeatherResponseMapper::class
+
+        // ViewModels
+        viewModel { HomeViewModel(get()) }
     }
 }

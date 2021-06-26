@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.com.neillon.home.presentation.ui.cityselection.CitySelectionBottomSheetFragment
 import br.com.neillon.home.databinding.FragmentHomeBinding
+import br.com.neillon.home.presentation.ui.cityselection.CitySelectionBottomSheetFragment
 
 class HomeFragment : Fragment() {
 
@@ -42,8 +42,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun openCitySelectionBottomSheet() {
-        CitySelectionBottomSheetFragment.newInstance {
-            Log.i(TAG, "openCitySelectionBottomSheet: Should update the current location")
+        CitySelectionBottomSheetFragment.newInstance { cityName ->
+            Log.i(
+                TAG,
+                "openCitySelectionBottomSheet: Should update the current location to $cityName"
+            )
         }.show(parentFragmentManager, CitySelectionBottomSheetFragment.TAG)
     }
 }
