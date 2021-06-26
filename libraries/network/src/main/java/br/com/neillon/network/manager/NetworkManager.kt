@@ -24,7 +24,6 @@ object NetworkManager {
                 }
 
         } catch (e: Exception) {
-            Log.e(TAG, e.message.toString())
             throw Exception(e.message!!)
         }
     }
@@ -36,6 +35,6 @@ object NetworkManager {
 
         return errorResponse?.message?.let {
             it.split(":").last()
-        } ?: Constants.Network.Exceptions.Messages.NOT_SPECIFIED_ERROR
+        } ?: Constants.Network.Exceptions.NOT_SPECIFIED_ERROR_MESSAGE
     }
 }

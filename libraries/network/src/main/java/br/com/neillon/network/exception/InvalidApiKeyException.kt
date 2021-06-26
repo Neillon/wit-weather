@@ -1,3 +1,5 @@
 package br.com.neillon.network.exception
 
-class InvalidApiKeyException: Exception("Invalid api key")
+import br.com.neillon.network.Constants
+
+class InvalidApiKeyException: Exception(Constants.Network.Exceptions.INVALID_API_KEY_STATUS_MESSAGE)

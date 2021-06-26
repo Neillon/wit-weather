@@ -47,7 +47,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    testImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Retrofit
@@ -68,4 +68,18 @@ dependencies {
     implementation "io.insert-koin:koin-android-scope:$koin_version"
     implementation "io.insert-koin:koin-android-viewmodel:$koin_version"
     implementation "io.insert-koin:koin-android-ext:$koin_version"
+
+    // MockK
+    def mockk_version = "1.10.3-jdk8"
+    testImplementation "io.mockk:mockk:$mockk_version"
+
+    // Coroutines Test
+    def coroutines_test_version = "1.5.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // Core Testing
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // MockWebServer
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.2.0"
 }

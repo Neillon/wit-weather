@@ -1,4 +1,4 @@
-package br.com.neillon.network.abstractions
+package br.com.neillon.core.common
 
 sealed class Either<out E, out V> {
     data class Value<out L>(val packet: L) : Either<L, Nothing>()
@@ -6,9 +6,9 @@ sealed class Either<out E, out V> {
 
     companion object {
         fun <R> error(value: R): Either<Nothing, R> =
-            Either.Error(value)
+            Error(value)
 
         fun <L> value(value: L): Either<L, Nothing> =
-            Either.Value(value)
+            Value(value)
     }
 }

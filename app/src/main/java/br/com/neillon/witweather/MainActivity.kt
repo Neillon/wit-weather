@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.neillon.core.navigation.Features
 import br.com.neillon.core.navigation.Navigator
 import br.com.neillon.witweather.databinding.ActivityMainBinding
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
-import com.google.android.gms.tasks.Task
 
 class MainActivity : AppCompatActivity() {
 
