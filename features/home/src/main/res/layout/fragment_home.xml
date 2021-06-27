@@ -37,10 +37,9 @@
                 android:id="@+id/textViewCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="18sp"
+                android:layout_marginTop="24dp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Berlim" />
@@ -52,10 +51,27 @@
                 android:layout_marginTop="16dp"
                 android:textSize="48sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/textViewCity"
                 tools:text="13º" />
+
+            <ImageView
+                android:id="@+id/imageViewDescription"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/textViewDescription"
+                app:layout_constraintStart_toStartOf="@+id/textViewDescription"
+                app:layout_constraintTop_toTopOf="@+id/textViewTemperature"
+                tools:src="@drawable/ic_location_searching" />
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toEndOf="@+id/textViewTemperature"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewDescription"
+                tools:text="Cloudy" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline5"
@@ -79,12 +95,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/textViewTemperature"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTemperature"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewDescription"
+                app:layout_constraintStart_toEndOf="@+id/textViewDescription"
+                app:layout_constraintTop_toTopOf="@+id/imageViewDescription"
                 tools:text="18º" />
 
 
@@ -102,12 +117,12 @@
                 android:id="@+id/textViewMinTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
-                app:layout_constraintStart_toEndOf="@+id/textViewTemperature"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTemperature"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewMaxTemp"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/textViewMaxTemp"
                 tools:text="18º" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

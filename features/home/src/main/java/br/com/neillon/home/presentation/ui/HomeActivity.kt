@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import br.com.neillon.core.extensions.ZERO
 import br.com.neillon.home.databinding.ActivityHomeBinding
@@ -61,7 +62,6 @@ class HomeActivity : AppCompatActivity() {
     private fun setupNavigation() {
         navHostFragment?.let {
             navController = it.findNavController()
-            binding.homeToolbar.setupWithNavController(navController)
         }
     }
 }

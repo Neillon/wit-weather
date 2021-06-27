@@ -7,14 +7,6 @@
     android:layout_height="match_parent"
     tools:context="br.com.neillon.home.presentation.ui.HomeActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/homeToolbar"
-        android:layout_width="0dp"
-        android:layout_height="?android:actionBarSize"
-        android:background="?colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -26,6 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeToolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/wit_weather_graph" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -128,6 +128,20 @@ class HomeFragment : Fragment() {
             textViewWindVelocity.text = currentLocation.windVelocity.toWindVelocity()
             textViewHumidity.text = currentLocation.humidity.toPercentageString()
             textViewPressure.text = currentLocation.pressure.toAtmosphericPressure()
+
+            textViewDescription.text = currentLocation.description.capitalize()
+
+            imageViewDescription.setImageResource(
+                when {
+                    currentLocation.description.toLowerCase()
+                        .contains("clear") -> R.drawable.ic_clear_sky
+                    currentLocation.description.toLowerCase()
+                        .contains("rain") -> R.drawable.ic_heavy_rain
+                    else -> R.drawable.ic_clouds
+                }
+            )
+
+
         }
     }
 
