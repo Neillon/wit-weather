@@ -1,6 +1,6 @@
 package br.com.neillon.network.extensions
 
-import br.com.neillon.network.interceptor.AuthenticationInterceptor
+import br.com.neillon.network.interceptor.QueryParameterInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
@@ -13,7 +13,7 @@ object OkHttpExtensions {
         return this
     }
 
-    fun OkHttpClient.Builder.addAuthInterceptor(key: String) {
-        addInterceptor(AuthenticationInterceptor(key))
+    fun OkHttpClient.Builder.addQueryParameterInterceptor(key: String, value: String) {
+        addInterceptor(QueryParameterInterceptor(key, value))
     }
 }

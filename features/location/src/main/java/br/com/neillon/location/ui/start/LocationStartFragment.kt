@@ -1,19 +1,15 @@
 package br.com.neillon.location.ui.start
 
-import android.app.Activity
-import android.content.Intent
-import android.content.IntentSender
+import android.Manifest
 import android.os.Bundle
-import android.util.Log
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import br.com.neillon.core.androidextensions.checkPermissions
 import br.com.neillon.location.databinding.FragmentLocationStartBinding
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
-import com.google.android.gms.tasks.Task
 
 class LocationStartFragment : Fragment() {
 
@@ -27,11 +23,27 @@ class LocationStartFragment : Fragment() {
 
     private val navController by lazy { findNavController() }
 
+    private val isLocationActivated by lazy {
+        try {
+            val locationMode =
+                Settings.Secure.getInt(context?.contentResolver, Settings.Secure.LOCATION_MODE);
+            locationMode != Settings.Secure.LOCATION_MODE_OFF;
+        } catch (e: Settings.SettingNotFoundException) {
+            false
+        }
+    }
+    private val hasLocationPermissions by lazy {
+        requireContext().checkPermissions(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLocationStartBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,40 +51,23 @@ class LocationStartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createLocationRequest()
-    }
-
-    private fun createLocationRequest() {
-        val locationRequest = LocationRequest.create().apply {
-            interval = 10000
-            fastestInterval = 5000
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        if (hasLocationPermissions && isLocationActivated) {
+            navigateToGetCurrentLocation()
+            return
         }
 
-        val builder = LocationSettingsRequest.Builder()
-            .addLocationRequest(locationRequest)
-
-        val client: SettingsClient = LocationServices.getSettingsClient(requireContext())
-        val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
-
-        task
-            .addOnSuccessListener { navigateToLocation() }
-            .addOnFailureListener { exception ->
-                if (exception is ResolvableApiException) {
-                    try {
-                        exception.startResolutionForResult(
-                            requireActivity(), REQUEST_CHECK_SETTINGS
-                        )
-                    } catch (sendEx: IntentSender.SendIntentException) {
-                        Log.e(TAG, "createLocationRequest: Error sending intent")
-                    }
-                }
-            }
+        navigateToAskForLocationPermissions()
     }
 
-    private fun navigateToLocation() {
+    private fun navigateToAskForLocationPermissions() {
         val action =
-            LocationStartFragmentDirections.actionLocationStartFragmentToLocationPermissionFragment()
+            LocationStartFragmentDirections.actionLocationStartFragmentToAskForPermissionFragment()
+        navController.navigate(action)
+    }
+
+    private fun navigateToGetCurrentLocation() {
+        val action =
+            LocationStartFragmentDirections.actionLocationStartFragmentToGetCurrentLocationFragment()
         navController.navigate(action)
     }
 }

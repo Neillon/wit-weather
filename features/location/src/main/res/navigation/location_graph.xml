@@ -11,12 +11,33 @@
         android:label="fragment_location_start"
         tools:layout="@layout/fragment_location_start" >
         <action
-            android:id="@+id/action_locationStartFragment_to_locationPermissionFragment"
-            app:destination="@id/locationPermissionFragment" />
+            android:id="@+id/action_locationStartFragment_to_askForPermissionFragment"
+            app:destination="@id/askForPermissionFragment" />
+        <action
+            android:id="@+id/action_locationStartFragment_to_getCurrentLocationFragment"
+            app:destination="@id/getCurrentLocationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/locationPermissionFragment"
-        android:name="br.com.neillon.location.ui.location.LocationPermissionFragment"
+        android:id="@+id/askForPermissionFragment"
+        android:name="br.com.neillon.location.ui.askforpermission.AskForPermissionFragment"
         android:label="fragment_location_permission"
-        tools:layout="@layout/fragment_location_permission" />
+        tools:layout="@layout/fragment_location_permission" >
+        <action
+            android:id="@+id/action_askForPermissionFragment_to_turnOnLocationFragment"
+            app:destination="@id/turnOnLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/turnOnLocationFragment"
+        android:name="br.com.neillon.location.ui.turnonlocation.TurnOnLocationFragment"
+        android:label="fragment_turn_on_location"
+        tools:layout="@layout/fragment_turn_on_location" >
+        <action
+            android:id="@+id/action_turnOnLocationFragment_to_getCurrentLocationFragment2"
+            app:destination="@id/getCurrentLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getCurrentLocationFragment"
+        android:name="br.com.neillon.location.ui.getcurrentlocation.GetCurrentLocationFragment"
+        android:label="fragment_get_current_location"
+        tools:layout="@layout/fragment_get_current_location" />
 </navigation>
